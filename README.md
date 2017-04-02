@@ -10,3 +10,4 @@ Dependencies:
 
 Note:
 - The custom library for real-time phase-presentation (RTPP) is not yet publicly released, and is required to use the onine templates as they are set up. This code will be released as soon as the pre-print covering the methods and validation are ready.
+- TODO: Add a top-level description and motivation for the template structure and how they work. 
