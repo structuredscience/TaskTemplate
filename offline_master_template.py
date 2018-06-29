@@ -1,13 +1,3 @@
-# Import all external dependencies
-from psychopy import visual, core, gui
-import pickle
-import pylsl
-import numpy as np
-
-# Import custom code
-from custom_module import *
-# ^ CUSTOM MODULE IS WHATEVER YOU NAME THE 'BODY' SCRIPT. UPDATE NAME HERE
-
 """
 THIS IS A TEMPLATE FOR AN OFFLINE EXPERIMET.
 PARTS IN ALL CAPS ARE NOTES ON THE TEMPLATE, AND NEED UPDATING TO RUN.
@@ -28,6 +18,18 @@ Notes:
         - At the end of the experiment, experiment data is saved out (as npz)
 """
 
+# Import all external dependencies
+import pickle
+
+import numpy as np
+
+import pylsl
+from psychopy import visual, core, gui
+
+# Import custom code
+from custom_module import *
+# ^ CUSTOM MODULE IS WHATEVER YOU NAME THE 'BODY' SCRIPT. UPDATE NAME HERE
+
 ###################################################################################################
 ###################################################################################################
 
@@ -36,7 +38,6 @@ TEST_RUN = False
 
 ###################################################################################################
 ###################################################################################################
-
 
 def main():
 

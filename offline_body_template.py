@@ -1,9 +1,3 @@
-from psychopy import visual, core, data, event
-import random
-import datetime
-import numpy as np
-import pylsl
-
 """
 THIS IS A TEMPLATE FOR AN OFFLINE EXPERIMET.
 PARTS IN ALL CAPS ARE NOTES ON THE TEMPLATE, AND NEED UPDATING TO RUN.
@@ -13,6 +7,14 @@ Classes & Functions to run the .... experiment.
 Notes:
     - Here, set up to use LSL for sending event markers. This can be changed.
 """
+
+import random
+import datetime
+
+import numpy as np
+
+import pylsl
+from psychopy import visual, core, data, event
 
 ###################################################################################################
 ####################################### Experiment - Classes ######################################
@@ -290,7 +292,7 @@ def run_trial(mywin, marker_outlet, run, stim, trial_info):
     """
 
     # Get index object
-    i = Inds()
+    ind = Inds()
 
     # Get trial parameters
     # PULL OUT TRIAL SETTINGS FROM TRIAL_INFO
@@ -374,11 +376,11 @@ def train(mywin, marker_outlet, exinfo, run, stim):
     """
 
     # Get index object
-    i = Inds()
+    ind = Inds()
 
     # Get number of practice trials per practice block
-    nPrac_1 = exinfo.ntrain_1
-    nPrac_2 = exinfo.ntrain_2
+    n_prac_1 = exinfo.ntrain_1
+    n_prac_2 = exinfo.ntrain_2
 
     # Set up trial parameters
     block_num = -1
@@ -395,12 +397,12 @@ def train(mywin, marker_outlet, exinfo, run, stim):
     core.wait(1.0)
 
     # Initialize matrices for train data (train block 1)
-    train_exp_1 = np.zeros(shape=(nPrac_1, LEN_TRIAL_DAT_OUT))
+    train_exp_1 = np.zeros(shape=(n_prac_1, LEN_TRIAL_DAT_OUT))
 
     # Run a practice block trials
     disp_text(mywin, message, "Lets try a few more practice trials.")
 
-    for trial in range(0, nPrac_1):
+    for trial in range(0, n_prac_1):
 
         # Run trial
         train_exp_1[trial, :] = run_trial(mywin, marker_outlet, run, stim, trial_info)
@@ -410,10 +412,10 @@ def train(mywin, marker_outlet, exinfo, run, stim):
     disp_text(mywin, message, "MORE INSTRUCTIONS")
 
     # Initialize matrices for train data (train block 2)
-    train_exp_2 = np.zeros(shape=(nPrac_2, LEN_TRIAL_DAT_OUT))
+    train_exp_2 = np.zeros(shape=(n_prac_2, LEN_TRIAL_DAT_OUT))
 
     # Run another practice block of trials
-    for trial in range(0, nPrac_2):
+    for trial in range(0, n_prac_2):
 
         # Run trial
         train_exp_2[trial, :] = run_trial(mywin, marker_outlet, run, stim, trial_info)
@@ -481,7 +483,7 @@ def threshold_staircase(mywin, marker_outlet, exinfo, run, stim):
     """
 
     # Get index object
-    i = Inds()
+    ind = Inds()
 
     # Set up trial information for thresholding trials
     block_num = 0

@@ -1,14 +1,3 @@
-from psychopy import visual, core, gui, data, event
-import random
-import datetime
-import pylsl
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy import signal as sig
-
-# Import the real-time functions
-from RTPP import *
-
 """
 THIS IS A TEMPLATE FOR A ONLINE EXPERIMET - USING REAL-TIME PHASE PREDICTION.
 PARTS IN ALL CAPS ARE NOTES ON THE TEMPLATE, AND NEED UPDATING TO RUN.
@@ -21,6 +10,20 @@ Notes:
     - Here, set up to use LSL for sending event markers. This can be changed.
     - By default, this template will collect and save out data on the online methods.
 """
+
+# Import all external dependencies
+import random
+import datetime
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal as sig
+
+import pylsl
+from psychopy import visual, core, gui, data, event
+
+# Import the real-time functions
+from RTPP import *
 
 ###################################################################################################
 #################################### rt exp template - Classes ####################################
@@ -421,11 +424,10 @@ def run_trial_online(mywin, EEGinlet, marker_outlet, run, stim, trial_info):
     # Set up event marker
     event_out = run.ev_names[det_type] + '_Pres_' + str(trial_type_str)
 
-    # Present Stimulus -  at predicted time
+    # Present stimulus at predicted time
     while True:
         if now < pred_prestime:
             now = run.clock.getTime()*1000
-            pass
         else:
             marker_outlet.push_sample(pylsl.vectorstr([event_out]))
             for frame in range(run.flash_nflips):
@@ -651,15 +653,15 @@ def psdcheck(EEGinlet, marker_outlet, exinfo, run):
     EEG_window_rest = EEG_window_rest - np.mean(EEG_window_rest)
 
     ## Take psd, plot and ask experimenter to check
-    f, psd = sig.welch(EEG_window_rest, fs=run.srate, window='hanning',
-                       nperseg=2*run.srate, noverlap=run.srate/2, nfft=None,
-                       detrend='linear', return_onesided=True, scaling='density')
+    freqs, psd = sig.welch(EEG_window_rest, fs=run.srate, window='hanning',
+                           nperseg=2*run.srate, noverlap=run.srate/2, nfft=None,
+                           detrend='linear', return_onesided=True, scaling='density')
 
     # Set psd range for visualization
     fwin = [1, 50]
     # Find indices of f values closest to range of interest
-    fwin = [np.argmin(abs(f-fwin[0])), np.argmin(abs(f-fwin[1]))]
-    f = f[fwin[0]:fwin[1]]
+    fwin = [np.argmin(abs(freqs-fwin[0])), np.argmin(abs(freqs-fwin[1]))]
+    freqs = freqs[fwin[0]:fwin[1]]
     psd = psd[fwin[0]:fwin[1]]
 
     # Plot psd
@@ -703,7 +705,7 @@ def train(mywin, EEGinlet, marker_outlet, exinfo, run, stim):
     """
 
     # Get index object
-    i = Inds()
+    ind = Inds()
 
     # Get number of practice trials per practice block
     n_prac_1 = exinfo.ntrain_1

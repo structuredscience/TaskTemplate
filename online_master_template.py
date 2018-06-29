@@ -1,16 +1,3 @@
-# Import all external dependecies
-from psychopy import visual, core, gui
-import pickle
-import pylsl
-import numpy as np
-
-# Import custom code
-# Import the online functions from RTPP
-from RTPP import filters
-from custom_module import *
-# ^ CUSTOM MODULE IS WHATEVER YOU NAME THE 'BODY' SCRIPT. UPDATE NAME HERE
-
-
 """
 THIS IS A TEMPLATE FOR AN OFFLINE EXPERIMET.
 PARTS IN ALL CAPS ARE NOTES ON THE TEMPLATE, AND NEED UPDATING TO RUN.
@@ -31,12 +18,25 @@ Notes:
         - At the end of the experiment, experiment data is saved out (as npz)
 """
 
+# Import all external dependecies
+import pickle
+
+import numpy as np
+
+import pylsl
+from psychopy import visual, core, gui
+
+# Import custom code
+# Import the online functions from RTPP
+from RTPP import filters
+from custom_module import *
+# ^ CUSTOM MODULE IS WHATEVER YOU NAME THE 'BODY' SCRIPT. UPDATE NAME HERE
+
 ###################################################################################################
 ###################################################################################################
 
 # Set whether to run a test run or not
 TEST_RUN = False
-
 
 ###################################################################################################
 ###################################################################################################
