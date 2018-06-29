@@ -22,9 +22,9 @@ Notes:
     - By default, this template will collect and save out data on the online methods.
 """
 
-#################################################################################
-########################### rt exp template - Classes ###########################
-#################################################################################
+###################################################################################################
+#################################### rt exp template - Classes ####################################
+###################################################################################################
 
 class ExpInfo(object):
     """Class to store experiment run parameters. """
@@ -207,10 +207,9 @@ class Inds(object):
         # ADD MORE INDICES HERE
 
 
-############################################################################
-############################## rtPB Functions ##############################
-############################################################################
-
+###################################################################################################
+################################### rt exp template - Functions ###################################
+###################################################################################################
 
 def run_block(mywin, EEGinlet, marker_outlet, exinfo, run, stim):
     """Runs a blocks of trials in the experiment.
@@ -263,7 +262,7 @@ def run_block(mywin, EEGinlet, marker_outlet, exinfo, run, stim):
     core.wait(1.5)
 
     # Loop through trials
-    for trial in xrange(0, ntrials_block):
+    for trial in range(0, ntrials_block):
         trial_info = [block_num, ETC] # <- LIST OF INFORMATION TO RUN THE TRIAL
                         #  FOR EXAMPLE: [BLOCK_NUM, TRIAL_NUM, trial_type, SIDE, ETC.]
         trial_dat, method_dat = run_trial_online(
@@ -529,7 +528,7 @@ def run_label_block(mywin, EEGinlet, marker_outlet, exinfo, run, trial_type_str)
     marker_outlet.push_sample(pylsl.vectorstr(["Start Labelling Block"]))
 
     # Loop through trials
-    for trial in xrange(0, ntrials):
+    for trial in range(0, ntrials):
         run_label_trial(EEGinlet, marker_outlet, run, trial_type_str)
         iti = 0.5 + random.random()
         core.wait(iti)
@@ -617,7 +616,7 @@ def psdcheck(EEGinlet, marker_outlet, exinfo, run):
     disp_text(mywin, message, str_message)
 
     # Pause, then start collection
-    print 'Starting rest EEG Collection'
+    print('Starting rest EEG Collection')
     core.wait(2.0)
 
     # Take time to check how long collection is
@@ -632,12 +631,12 @@ def psdcheck(EEGinlet, marker_outlet, exinfo, run):
     marker_outlet.push_sample(pylsl.vectorstr(["StartRest"]))
     # Re-referenced data
     if run.reref:
-        for sample_index in xrange(0, nsamples_rest):
+        for sample_index in range(0, nsamples_rest):
             EEGinlet.pull_sample(EEGsample)
             EEG_window_rest[sample_index] = EEGsample[run.chans[0]] - EEGsample[run.chans[1]]
     # Non-rereferenced data
     else:
-        for sample_index in xrange(0, nsamples_rest):
+        for sample_index in range(0, nsamples_rest):
             EEGinlet.pull_sample(EEGsample)
             EEG_window_rest[sample_index] = EEGsample[run.chans[0]]
 
@@ -732,7 +731,7 @@ def train(mywin, EEGinlet, marker_outlet, exinfo, run, stim):
     # Run practice block of easy trials
     disp_text(mywin, message, "Lets try a few more practice trials.")
 
-    for trial in xrange(0, n_prac_1):
+    for trial in range(0, n_prac_1):
 
         # Run trial
         train_exp_1[trial, :], train_meth_1[trial, :] = run_trial_online(
@@ -747,7 +746,7 @@ def train(mywin, EEGinlet, marker_outlet, exinfo, run, stim):
     train_meth_2 = np.zeros(shape=(n_prac_2, LEN_METHOD_TRIAL_DAT_OUT))
 
     # Run another practice block of trials
-    for trial in xrange(0, n_prac_2):
+    for trial in range(0, n_prac_2):
 
         # Run trial
         train_exp_2[trial, :], train_meth_2[trial, :] = run_trial_online(

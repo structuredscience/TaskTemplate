@@ -14,9 +14,9 @@ Notes:
     - Here, set up to use LSL for sending event markers. This can be changed.
 """
 
-#####################################################################################
-################################ Experiment- Classes ################################
-#####################################################################################
+###################################################################################################
+####################################### Experiment - Classes ######################################
+###################################################################################################
 
 class ExpInfo(object):
     """Class to store experiment run parameters."""
@@ -165,10 +165,9 @@ class Inds(object):
         # ADD MORE INDICES HERE
 
 
-############################################################################
-############################## rtPB Functions ##############################
-############################################################################
-
+###################################################################################################
+##################################### Experiment - Functions ######################################
+###################################################################################################
 
 def run_block(mywin, marker_outlet, exinfo, run, stim):
     """Runs a blocks of trials in the experiment.
@@ -216,7 +215,7 @@ def run_block(mywin, marker_outlet, exinfo, run, stim):
     core.wait(1.5)
 
     # Loop through trials
-    for trial in xrange(0, ntrials_block):
+    for trial in range(0, ntrials_block):
         trial_info = [block_num, ETC] # <- LIST OF INFORMATION TO RUN THE TRIAL
                         #  FOR EXAMPLE: [BLOCK_NUM, TRIAL_NUM, RUN_TYPE, SIDE, ETC.]
         trial_dat = run_trial(mywin, marker_outlet, run, stim, trial_info)
@@ -401,7 +400,7 @@ def train(mywin, marker_outlet, exinfo, run, stim):
     # Run a practice block trials
     disp_text(mywin, message, "Lets try a few more practice trials.")
 
-    for trial in xrange(0, nPrac_1):
+    for trial in range(0, nPrac_1):
 
         # Run trial
         train_exp_1[trial, :] = run_trial(mywin, marker_outlet, run, stim, trial_info)
@@ -414,7 +413,7 @@ def train(mywin, marker_outlet, exinfo, run, stim):
     train_exp_2 = np.zeros(shape=(nPrac_2, LEN_TRIAL_DAT_OUT))
 
     # Run another practice block of trials
-    for trial in xrange(0, nPrac_2):
+    for trial in range(0, nPrac_2):
 
         # Run trial
         train_exp_2[trial, :] = run_trial(mywin, marker_outlet, run, stim, trial_info)
