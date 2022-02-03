@@ -26,8 +26,8 @@ import numpy as np
 import pylsl
 from psychopy import visual, core, gui
 
-# Import the online functions from RTPP
-from RTPP import filters
+# Import the online functions from rtpp
+from rtpp import filters
 
 # Import custom code
 from custom_module import *

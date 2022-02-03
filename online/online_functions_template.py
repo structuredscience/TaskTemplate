@@ -22,14 +22,14 @@ import pylsl
 from psychopy import visual, core, gui, data, event
 
 # Import the real-time functions
-from RTPP import *
+from rtpp import *
 
 ###################################################################################################
 #################################### rt exp template - Classes ####################################
 ###################################################################################################
 
 class ExpInfo(object):
-    """Class to store experiment run parameters. """
+    """Class to store experiment run parameters."""
 
     def __init__(self):
 
@@ -75,12 +75,12 @@ class ExpInfo(object):
 
 
     def update_block_number(self):
-        """Increment block number after running a block. """
+        """Increment block number after running a block."""
         self.block_number += 1
 
 
 class RunInfo(object):
-    """Class to store information details used to run individual trials. """
+    """Class to store information details used to run individual trials."""
 
     def __init__(self):
 
@@ -117,7 +117,7 @@ class RunInfo(object):
 
 
     def make_files(self, subnum):
-        """Initialize data files and write headers. """
+        """Initialize data files and write headers."""
 
         # Experiment Data File
         self.dat_fn = "PATH_TO_SAVE_FILE_TO" + str(subnum) + "_exp.csv"
@@ -133,12 +133,12 @@ class RunInfo(object):
 
 
     def make_clock(self):
-        """Make the clock to use for the experiment. """
+        """Make the clock to use for the experiment."""
         self.clock = core.Clock()
 
 
 class Stim(object):
-    """Class to store all the stimuli used in the experiment. """
+    """Class to store all the stimuli used in the experiment."""
 
     def __init__(self):
 
@@ -503,9 +503,8 @@ def run_label_block(mywin, EEGinlet, marker_outlet, exinfo, run, trial_type_str)
         Object of information about the experiment.
     run : RunInfo() object
         Object of information / parameters to run task trials.
-    trial_type_str : str
+    trial_type_str : {'filt', 'thresh'}
         Method of online prediction to use.
-            Options: 'filt', 'thresh'
     """
 
     # Set up variables
@@ -553,9 +552,8 @@ def run_label_trial(EEGinlet, marker_outlet, run, trial_type_str):
         LSL output stream to send event markers.
     run : RunInfo() object
         Object of information / parameters to run task trials.
-    trial_type_str : str
+    trial_type_str :  {'filt', 'thresh'}
         Method of online prediction to use.
-            Options: 'filt', 'thresh'
     """
 
     # Pull EEG data and predict using the filter method

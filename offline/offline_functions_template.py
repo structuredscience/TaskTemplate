@@ -61,6 +61,7 @@ class ExpInfo(object):
 
     def update_block_number(self):
         """Increment block number after running a block."""
+
         self.block_number += 1
 
 
