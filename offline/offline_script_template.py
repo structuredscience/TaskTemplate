@@ -1,8 +1,8 @@
 """
-THIS IS A TEMPLATE FOR AN OFFLINE EXPERIMET.
+THIS IS A TEMPLATE FOR AN OFFLINE EXPERIMENT.
 PARTS IN ALL CAPS ARE NOTES ON THE TEMPLATE, AND NEED UPDATING TO RUN.
 
-This is the master script to run the .... experiment.
+This is the main script to run the .... experiment.
 
 Notes:
     The code to run this experiment is in the custom .... module.
@@ -28,7 +28,7 @@ from psychopy import visual, core, gui
 
 # Import custom code
 from custom_module import *
-# ^ CUSTOM MODULE IS WHATEVER YOU NAME THE 'BODY' SCRIPT. UPDATE NAME HERE
+# ^ CUSTOM MODULE IS WHATEVER YOU NAME THE 'FUNCTIONS' FILE. UPDATE NAME HERE
 
 ###################################################################################################
 ###################################################################################################
@@ -126,9 +126,7 @@ def main():
 
     # End experiment
     mywin.close()
-
     core.wait(10.0)
-
     core.quit()
 
 

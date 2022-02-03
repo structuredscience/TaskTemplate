@@ -1,8 +1,8 @@
 """
-THIS IS A TEMPLATE FOR AN OFFLINE EXPERIMET.
+THIS IS A TEMPLATE FOR AN OFFLINE EXPERIMENT.
 PARTS IN ALL CAPS ARE NOTES ON THE TEMPLATE, AND NEED UPDATING TO RUN.
 
-This is the master script to run the .... experiment.
+This is the main script to run the .... experiment.
 
 Notes:
     The code to run this experiment is in the custom .... module.
@@ -18,7 +18,7 @@ Notes:
         - At the end of the experiment, experiment data is saved out (as npz)
 """
 
-# Import all external dependecies
+# Import all external dependencies
 import pickle
 
 import numpy as np
@@ -26,11 +26,12 @@ import numpy as np
 import pylsl
 from psychopy import visual, core, gui
 
-# Import custom code
 # Import the online functions from RTPP
 from RTPP import filters
+
+# Import custom code
 from custom_module import *
-# ^ CUSTOM MODULE IS WHATEVER YOU NAME THE 'BODY' SCRIPT. UPDATE NAME HERE
+# ^ CUSTOM MODULE IS WHATEVER YOU NAME THE 'FUNCTIONS' SCRIPT. UPDATE NAME HERE
 
 ###################################################################################################
 ###################################################################################################
@@ -152,9 +153,7 @@ def main():
 
     # End experiment
     mywin.close()
-
     core.wait(10.0)
-
     core.quit()
 
 

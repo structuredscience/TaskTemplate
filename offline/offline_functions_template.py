@@ -1,11 +1,12 @@
 """
-THIS IS A TEMPLATE FOR AN OFFLINE EXPERIMET.
+THIS IS A TEMPLATE FOR AN OFFLINE EXPERIMENT.
 PARTS IN ALL CAPS ARE NOTES ON THE TEMPLATE, AND NEED UPDATING TO RUN.
 
 Classes & Functions to run the .... experiment.
 
 Notes:
-    - Here, set up to use LSL for sending event markers. This can be changed.
+- Here, set up to use LSL for sending event markers. This can be changed.
+- The default set up is to use LSL for sending event markers. This can be changed.
 """
 
 import random
@@ -124,7 +125,7 @@ class Stim(object):
 
 
     def update_stim(self, new_stim_param):
-        """Update stimuli. Used in behavioural thresholding.
+        """Update stimuli. Used in behavioral thresholding.
 
         Parameters
         ----------
@@ -145,7 +146,7 @@ class Block(object):
 
     def __init__(self):
 
-        # Initiliaze arrays to store trial parameters for a block
+        # Initialize arrays to store trial parameters for a block
         # INITIALIZE ARRAYS FOR TRIAL PARAMETERS HERE
         #  FOR EXAMPLE, TRIAL CONDITION, SIDE OF PRESENTATION, ETC.
         pass
@@ -287,7 +288,7 @@ def run_trial(mywin, marker_outlet, run, stim, trial_info):
     Returns
     -------
     trial_dat : 1d array
-        Vector of trial data about behaviour.
+        Vector of trial data about behavior.
             trial_dat: [] <- VECTOR OF TRIAL DATA. SET UP FOR WHAT YOU WANT TO COLLECT.
     """
 
@@ -479,7 +480,7 @@ def threshold_staircase(mywin, marker_outlet, exinfo, run, stim):
     thresh_exp_data : 2d array
         Experiment data from thresholding trials.
     stim : Stim() object
-        Stim object updated with thresholded lums.
+        Stim object updated with thresholded luminances.
     """
 
     # Get index object

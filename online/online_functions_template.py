@@ -1,14 +1,13 @@
 """
-THIS IS A TEMPLATE FOR A ONLINE EXPERIMET - USING REAL-TIME PHASE PREDICTION.
+THIS IS A TEMPLATE FOR A ONLINE EXPERIMENT - USING REAL-TIME PHASE PRESENTATION.
 PARTS IN ALL CAPS ARE NOTES ON THE TEMPLATE, AND NEED UPDATING TO RUN.
 
 Classes & Functions to run the .... experiment.
 
 Notes:
-    - This script has support for re-referencing online data collection, but it
-        is not used in the rtPB-3 protocol.
-    - Here, set up to use LSL for sending event markers. This can be changed.
-    - By default, this template will collect and save out data on the online methods.
+- By default, this template will collect and save out data on the online methods.
+- This script has support for re-referencing online data collection, if needed.
+- The default set up is to use LSL for sending event markers. This can be changed.
 """
 
 # Import all external dependencies
@@ -53,18 +52,18 @@ class ExpInfo(object):
         # Thresholding Settings - FOR BASIC STAIRCASE. CHANGE FOR OTHER/NO THRESHOLDING
         self.nthresh_trials = int()
         self.nreversals = int()
-        self.step_sizes = []# List of ints/floats
+        self.step_sizes = []          # List of ints / floats
 
         # Label Block Settings - IF DOING LABEL BLOCKS, SETTINGS HERE
         self.nlabel_blocks = int()
         self.ntrials_label_block = int()
 
         # Setting for rest-EEG collection (psdcheck)
-        self.rest_length = float()      # Time, in seconds, to collect rest EEG
+        self.rest_length = float()    # Time, in seconds, to collect rest EEG
 
         # Settings for train
-        self.ntrain_1 = int()      # Number of trials in first set of practice trials
-        self.ntrain_2 = int()      # Number of trials in second set of practice trials
+        self.ntrain_1 = int()         # Number of trials in first set of practice trials
+        self.ntrain_2 = int()         # Number of trials in second set of practice trials
 
         # Check current lsl version
         self.lsl_protocol_version = pylsl.protocol_version()
@@ -167,7 +166,7 @@ class Stim(object):
 
 
     def update_stim(self, new_stim_param):
-        """Update luminance values of flash. Used in behavioural thresholding.
+        """Update luminance values of flash. Used in behavioral thresholding.
 
         Parameters
         ----------
@@ -188,7 +187,7 @@ class Block(object):
 
     def __init__(self):
 
-        # Initiliaze arrays to store trial parameters for a block
+        # Initialize arrays to store trial parameters for a block
         # INITIALIZE ARRAYS FOR TRIAL PARAMETERS HERE
         #  FOR EXAMPLE, TRIAL CONDITION, SIDE OF PRESENTATION, ETC.
         pass
@@ -339,7 +338,7 @@ def run_trial_online(mywin, EEGinlet, marker_outlet, run, stim, trial_info):
     Returns
     -------
     trial_dat : 1d array
-        Vector of trial data about behaviour.
+        Vector of trial data about behavior.
             trial_dat: [] <- VECTOR OF TRIAL DATA. SET UP FOR WHAT YOU WANT TO COLLECT.
     method_dat : 1d array
         Vector of trial data about the online method.
@@ -347,13 +346,13 @@ def run_trial_online(mywin, EEGinlet, marker_outlet, run, stim, trial_info):
                         method (thresh):  [run_time, top_percentile, bot_percentile]
                         method (filt):    [run_time, peak_width, trough_width]
                 - run_time is in ms
-                - *_width is in samples (with native srate of 5000.)
+                - *_width is in samples (with native sampling rate of 5000.)
     """
 
     # Get index object
     i = Inds()
 
-    # Get trial paramters
+    # Get trial parameters
     # PULL OUT TRIAL SETTINGS FROM TRIAL_INFO
     #  FOR EXAMPLE, trial_type_str, SIDE etc.
 
@@ -489,8 +488,8 @@ def run_trial_online(mywin, EEGinlet, marker_outlet, run, stim, trial_info):
 
 
 def run_label_block(mywin, EEGinlet, marker_outlet, exinfo, run, trial_type_str):
-    """Runs the online labelling, without any task involved.
-    It can be used for labelling data with resting data, eyes open or closed.
+    """Runs the online labeling, without any task involved.
+    It can be used for labeling data with resting data, eyes open or closed.
 
     Parameters
     ----------
@@ -521,13 +520,13 @@ def run_label_block(mywin, EEGinlet, marker_outlet, exinfo, run, trial_type_str)
 
     # Check type of block ('filt' or 'thresh')
     if trial_type_str == 'filt':
-        marker_outlet.push_sample(pylsl.vectorstr(["Filt Labelling"]))
+        marker_outlet.push_sample(pylsl.vectorstr(["Filt Labeling"]))
     elif trial_type_str == 'thresh':
-        marker_outlet.push_sample(pylsl.vectorstr(["Thresh Labelling"]))
+        marker_outlet.push_sample(pylsl.vectorstr(["Thresh Labeling"]))
 
-    ## Run a block of EEG labelling
+    ## Run a block of EEG labeling
     # Send start of block label
-    marker_outlet.push_sample(pylsl.vectorstr(["Start Labelling Block"]))
+    marker_outlet.push_sample(pylsl.vectorstr(["Start Labeling Block"]))
 
     # Loop through trials
     for trial in range(0, ntrials):
@@ -536,7 +535,7 @@ def run_label_block(mywin, EEGinlet, marker_outlet, exinfo, run, trial_type_str)
         core.wait(iti)
 
     # Send marker for end of block
-    marker_outlet.push_sample(pylsl.vectorstr(["End Labelling Block"]))
+    marker_outlet.push_sample(pylsl.vectorstr(["End Labeling Block"]))
 
     # Self-paced break for participants between blocks
     disp_text(mywin, message, 'You have finished this block.')
@@ -595,7 +594,7 @@ def psdcheck(EEGinlet, marker_outlet, exinfo, run):
     exinfo : ExpInfo() object
         Object of information about the experiment.
     run : RunInfo() object
-        Object of information / parameters to run behavioural trials.
+        Object of information / parameters to run behavioral trials.
 
     Returns
     -------
@@ -636,7 +635,7 @@ def psdcheck(EEGinlet, marker_outlet, exinfo, run):
         for sample_index in range(0, nsamples_rest):
             EEGinlet.pull_sample(EEGsample)
             EEG_window_rest[sample_index] = EEGsample[run.chans[0]] - EEGsample[run.chans[1]]
-    # Non-rereferenced data
+    # Non-re-referenced data
     else:
         for sample_index in range(0, nsamples_rest):
             EEGinlet.pull_sample(EEGsample)
@@ -645,7 +644,7 @@ def psdcheck(EEGinlet, marker_outlet, exinfo, run):
     # Send event code for end of rest-record
     marker_outlet.push_sample(pylsl.vectorstr(["EndRest"]))
 
-    # Get time after, and check how long colleciton is
+    # Get time after, and check how long collection is
     time_after_rest = run.clock.getTime()
     rest_collection_time = round(time_after_rest - time_before_rest)
 
@@ -818,7 +817,7 @@ def threshold_staircase(mywin, EEGinlet, marker_outlet, exinfo, run, stim):
     thresh_method_data : 2d array
         Method data from thresholding trials.
     stim : Stim() object
-        Stim object updated with thresholded lums.
+        Stim object updated with thresholded luminances.
     """
 
     # Create the Staircase Handler
@@ -892,7 +891,7 @@ def threshold_staircase(mywin, EEGinlet, marker_outlet, exinfo, run, stim):
     #    MULTIPLE STAIRCASES, AND/OR A SET OF REVERSAL POINTS IN EACH STAIRCASE
     UPDATE_PARAMS = None
 
-    # Update stim lums to be used for main experiment
+    # Update stim luminance to be used for main experiment
     stim.update_stim(UPDATE_PARAMS)
 
     # Save staircase object
